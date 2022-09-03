@@ -2,9 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import Fade from 'react-reveal/Fade'
 
+
 function Section({title, description, backgroundImg, leftBtnText, rightBtnText}) {
 	return (
-		<Wrap bgImage={backgroundImg}> {/* pass props */}
+		<Wrap backgroundImg={backgroundImg}>
 			<Fade bottom>
 				<ItemText>
 					<h1>{title}</h1>
@@ -35,16 +36,16 @@ export default Section
 const Wrap = styled.div `
 	width: 100vw;
 	height: 100vh;
-	background-size: cover; /* set size to cover */
-	background-position: center; /* center the image */
-	background-repeat: no-repeat; /* dont repeat the background */
+	background-size: cover; 
+	background-position: center; 
+	background-repeat: no-repeat; 
 
 	display: flex;
-	flex-direction: column; /* switch to vertical */
-	justify-content: space-between; /* horizontal alignment */
-	align-items: center; /* vertical alignment */
+	flex-direction: column;
+	justify-content: space-between; 
+	align-items: center; 
 
-	background-image: ${props => `url("/images/${props.bgImage}")`};
+	background-image: ${props=> `url("/images/${props.backgroundImg}")`};
 `
 
 const ItemText = styled.div `

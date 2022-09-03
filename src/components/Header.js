@@ -1,25 +1,24 @@
+/* eslint-disable*/
 import React,{ useState } from 'react'
 import styled from 'styled-components'
 import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close'
 import { useSelector } from 'react-redux'
-// import { RemoveScroll } from 'react-remove-scroll/UI'
-
 import { selectCars } from "../features/car/carSlice"
 
 function Header() {
 	const [burgerStatus, setBurgerStatus] = useState(false)
 	const cars = useSelector(selectCars)
 
-	const changeBurgerStatus = () => {
-		setBurgerStatus(!burgerStatus)
-		const bodySelect = document.querySelector("body")
-		bodySelect.classList.toggle("hideScroll")		
-	}
+	// const changeBurgerStatus = () => {
+	// 	setBurgerStatus(!burgerStatus)
+	// 	const bodySelect = document.querySelector("body")
+	// 	bodySelect.classList.toggle("hideScroll")		
+	// }
 
 	return (
 		<Container>
-			<a>
+			<a href='#'>
 				<img src="/images/logo.svg" alt="" />
 			</a>
 			<Menu>
@@ -30,12 +29,12 @@ function Header() {
 			<RightMenu>
 				<a href="#">Shop</a>
 				<a href="#">Tesla Account</a>
-				<CustomMenu onClick={ changeBurgerStatus } />
+				<CustomMenu onClick={()=>setBurgerStatus(true)} />
 			</RightMenu>
-			{/* <RemoveScroll> */}
+		
 				<BurgerNav show={burgerStatus}>
 					<CloseWrapper>
-						<CustomClose onClick={ changeBurgerStatus } />
+						<CustomClose onClick={()=>setBurgerStatus(false)} />
 					</CloseWrapper>
 					{cars && cars.map( (car, index) => (
 						<li><a key={index} href="#">{car}</a></li>
@@ -52,7 +51,7 @@ function Header() {
 					<li> <a href="#">Utilities</a> </li>
 					<li> <a href="#">Test Drive</a> </li>
 				</BurgerNav>
-			{/* </RemoveScroll> */}
+
 		</Container>
 	)
 }
@@ -133,13 +132,11 @@ const BurgerNav = styled.div `
 	right: 0;
 	background: rgba( 255, 255, 255, 1);
 	width: 300px;
-	z-index: 16;
 	list-style: none;
 	padding: 20px;
 	display: flex;
 	flex-direction: column;
 	text-align: start;
-
 	transform: ${ props => props.show ? 'translateX(0)' : 'translateX(100%)'};
 	transition: transform 0.2s ease-in-out;
 
